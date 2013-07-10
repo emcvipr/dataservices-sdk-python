@@ -1,0 +1,9 @@
+=======================================
+= EMC ViPR Data Services - Python SDK =
+=======================================
+
+To Install:
+
+python setup.py build
+sudo python setup.py install
+
