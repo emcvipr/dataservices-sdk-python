@@ -249,14 +249,14 @@ class ViprData:
 
     @resetHeaders
     def bucket_switch(self, namespace, bucket, mode, hosts, duration, token, user, uid, secret):
-       
         self._headers[FILE_ACCESS_MODE_HEADER] = mode
-        self._headers[FILE_ACCESS_USER_HEADER] = user
-        if (hosts):
+        if (user != None):
+            self._headers[FILE_ACCESS_USER_HEADER] = user
+        if (hosts != None):
             self._headers[FILE_ACCESS_HOST_LIST_HEADER] = hosts
-        if (duration):
+        if (duration != None):
             self._headers[FILE_ACCESS_DURATION_HEADER] = duration
-        if (token):
+        if (token != None):
             self._headers[FILE_ACCESS_TOKEN_HEADER] = token
         else:
             if (self._headers.has_key(FILE_ACCESS_TOKEN_HEADER)):
@@ -284,28 +284,20 @@ class ViprData:
 
     @resetHeaders
     def container_switchfileaccess(self, namespace, container, mode, hosts, duration, token, user, uid, secret):
-        self._headers[FILE_ACCESS_MODE_HEADER] =  mode        
-        self._headers[FILE_ACCESS_DURATION_HEADER] = duration
-        self._headers[FILE_ACCESS_HOST_LIST_HEADER] = hosts
-        self._headers[FILE_ACCESS_USER_HEADER] = user
+        self._headers[FILE_ACCESS_MODE_HEADER] = mode
+        if (user != None):
+            self._headers[FILE_ACCESS_USER_HEADER] = user
+        if (hosts != None):
+            self._headers[FILE_ACCESS_HOST_LIST_HEADER] = hosts
+        if (duration != None):
+            self._headers[FILE_ACCESS_DURATION_HEADER] = duration
         if (token != None):
             self._headers[FILE_ACCESS_TOKEN_HEADER] = token
+        else:
+            if (self._headers.has_key(FILE_ACCESS_TOKEN_HEADER)):
+                del self._headers[FILE_ACCESS_TOKEN_HEADER]
 
         response = self.coreapi('PUT', URI_SWIFT_CONTAINER_INSTANCE.format(namespace, container), None, {'accessmode':None}, content_type=CONTENT_TYPE_XML)
-
-        h = response.headers
-        if (h[FILE_ACCESS_MODE_HEADER]) :
-            print '%s=%s' % (FILE_ACCESS_MODE_HEADER, h[FILE_ACCESS_MODE_HEADER])
-        if ( h[FILE_ACCESS_DURATION_HEADER]):
-            print '%s=%s' % (FILE_ACCESS_DURATION_HEADER, h[FILE_ACCESS_DURATION_HEADER])
-        if ( h[FILE_ACCESS_HOST_LIST_HEADER]):
-            print '%s=%s' % (FILE_ACCESS_HOST_LIST_HEADER, h[FILE_ACCESS_HOST_LIST_HEADER])
-        if ( h[FILE_ACCESS_USER_HEADER]):
-            print '%s=%s' % (FILE_ACCESS_USER_HEADER, h[FILE_ACCESS_USER_HEADER])
-        if ( h[FILE_ACCESS_START_TOKEN_HEADER]):
-            print '%s=%s' % (FILE_ACCESS_START_TOKEN_HEADER, h[FILE_ACCESS_START_TOKEN_HEADER])
-        if ( h[FILE_ACCESS_END_TOKEN_HEADER]):
-            print '%s=%s' % (FILE_ACCESS_END_TOKEN_HEADER, h[FILE_ACCESS_END_TOKEN_HEADER])
         return response
 
     @resetHeaders
@@ -318,18 +310,5 @@ class ViprData:
     @resetHeaders
     def container_getaccessmode(self, namespace, container, uid, secret):
         response = self.coreapi('GET', URI_SWIFT_CONTAINER_INSTANCE.format(namespace, container), None, {'accessmode':None}, content_type=CONTENT_TYPE_XML)
-
-        h = response.headers
-        print '%s=%s' % (FILE_ACCESS_MODE_HEADER, h[FILE_ACCESS_MODE_HEADER])   
-        if ( h[FILE_ACCESS_DURATION_HEADER]):
-            print '%s=%s' % (FILE_ACCESS_DURATION_HEADER, h[FILE_ACCESS_DURATION_HEADER])
-        if ( h[FILE_ACCESS_HOST_LIST_HEADER]):
-            print '%s=%s' % (FILE_ACCESS_HOST_LIST_HEADER, h[FILE_ACCESS_HOST_LIST_HEADER])
-        if ( h[FILE_ACCESS_USER_HEADER]):
-            print '%s=%s' % (FILE_ACCESS_USER_HEADER, h[FILE_ACCESS_USER_HEADER])
-        if ( h[FILE_ACCESS_START_TOKEN_HEADER]):
-            print '%s=%s' % (FILE_ACCESS_START_TOKEN_HEADER, h[FILE_ACCESS_START_TOKEN_HEADER])
-        if ( h[FILE_ACCESS_END_TOKEN_HEADER]):
-            print '%s=%s' % (FILE_ACCESS_END_TOKEN_HEADER, h[FILE_ACCESS_END_TOKEN_HEADER])
         return response
 
