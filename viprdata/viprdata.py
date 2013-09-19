@@ -263,7 +263,7 @@ class ViprData:
                 del self._headers[FILE_ACCESS_TOKEN_HEADER]
   
         qparms = {'accessmode': None}
-        self._set_auth_and_ns_header('PUT', namespace,bucket, None, uid, secret, parameters_to_sign = qparms)
+        self._set_auth_and_ns_header('PUT', namespace, bucket, None, uid, secret, parameters_to_sign = qparms)
         response = self.coreapi('PUT', URI_S3_BUCKET_INSTANCE.format(bucket), None, qparms , content_type=CONTENT_TYPE_XML) 
         return response
 

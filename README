@@ -1,9 +1,3 @@
-=======================================
-= EMC ViPR Data Services - Python SDK =
-=======================================
+ViPR Data Services is the next generation software defined storage solution that layers cloud data types over traditional storage arrays. It transforms existing data into cloud data enabling new access patterns for modern applications. ViPR leverages and extends capabilities of the underlying storage devices to provide enterprise grade private cloud storage.
 
-To Install:
-
-python setup.py build
-sudo python setup.py install
-
+This SDK provides convenient access to the S3 API extensions that ViPR Data Services provides to enhance the object storage experience, such as NFS file access to a bucket.

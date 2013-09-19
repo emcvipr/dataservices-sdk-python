@@ -13,11 +13,11 @@ def read(fname):
 
 setup(
     name='vipr-data',
-    version='0.3',
+    version='0.4',
     include_package_data=True,
-    description='EMC ViPR data-services SDK for Python',
+    description='EMC ViPR Data Services SDK for Python',
     author='EMC',
-    author_email='ViPR.EAP.Feedback@emc.com',
+    author_email='ViPR.Data.Services.SDK@emc.com',
     license='BSD',
     keywords='emc vipr dataservices sdk',
     url='',
