@@ -13,14 +13,14 @@ def read(fname):
 
 setup(
     name='vipr-data',
-    version='0.4',
+    version='0.4.1',
     include_package_data=True,
     description='EMC ViPR Data Services SDK for Python',
     author='EMC',
     author_email='ViPR.Data.Services.SDK@emc.com',
     license='BSD',
     keywords='emc vipr dataservices sdk',
-    url='',
+    url='https://community.emc.com/community/edn/vipr-data-services',
     packages=find_packages(),
     long_description=read('README'),
     classifiers=[
@@ -29,7 +29,6 @@ setup(
         'License :: OSI Approved :: BSD License'
     ],
     install_requires=[
-        'requests',
-        'python_cjson'
+        'requests'
     ]
 )

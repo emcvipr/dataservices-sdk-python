@@ -13,7 +13,6 @@ import os
 import copy
 from email.Utils import formatdate
 import json
-import cjson
 import requests
 import urllib
 import hmac
@@ -136,7 +135,7 @@ class ViprData:
     def __api(self, method, uri, parms = None, qparms = None, content_type=CONTENT_TYPE_JSON, accept=CONTENT_TYPE_JSON, req_timeout = MAX_REQUEST_TIMEOUT_SECONDS):
         body = None
         if (parms and content_type==CONTENT_TYPE_JSON):
-            body = cjson.encode(parms)
+            body = json.dumps(parms)
         else:
             body = parms
 
