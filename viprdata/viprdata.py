@@ -42,6 +42,7 @@ FILE_ACCESS_USER_HEADER         = "x-emc-file-access-uid"
 FILE_ACCESS_TOKEN_HEADER        = "x-emc-file-access-token"
 FILE_ACCESS_START_TOKEN_HEADER  = "x-emc-file-access-start-token"
 FILE_ACCESS_END_TOKEN_HEADER    = "x-emc-file-access-end-token"
+FILE_ACCESS_PRESERVE_PATHS_HEADER = "x-emc-file-access-on-ingestion-device"
 
 # Number of seconds a request should wait for response.
 # It only effects the connection process itself, not the downloading of the response body
@@ -247,7 +248,7 @@ class ViprData:
         self._s3_hmac_base64_sig(method, bucket, objname, uid, secret, content_type, parameters_to_sign)
 
     @resetHeaders
-    def bucket_switch(self, namespace, bucket, mode, hosts, duration, token, user, uid, secret):
+    def bucket_switch(self, namespace, bucket, mode, hosts, duration, token, user, preserve, uid, secret):
         self._headers[FILE_ACCESS_MODE_HEADER] = mode
         if (user != None):
             self._headers[FILE_ACCESS_USER_HEADER] = user
@@ -255,6 +256,8 @@ class ViprData:
             self._headers[FILE_ACCESS_HOST_LIST_HEADER] = hosts
         if (duration != None):
             self._headers[FILE_ACCESS_DURATION_HEADER] = duration
+        if (preserve != None):
+            self._headers[FILE_ACCESS_PRESERVE_PATHS_HEADER] = preserve
         if (token != None):
             self._headers[FILE_ACCESS_TOKEN_HEADER] = token
         else:
@@ -282,7 +285,7 @@ class ViprData:
         return response
 
     @resetHeaders
-    def container_switchfileaccess(self, namespace, container, mode, hosts, duration, token, user, uid, secret):
+    def container_switchfileaccess(self, namespace, container, mode, hosts, duration, token, user, preserve, uid, secret):
         self._headers[FILE_ACCESS_MODE_HEADER] = mode
         if (user != None):
             self._headers[FILE_ACCESS_USER_HEADER] = user
@@ -290,6 +293,8 @@ class ViprData:
             self._headers[FILE_ACCESS_HOST_LIST_HEADER] = hosts
         if (duration != None):
             self._headers[FILE_ACCESS_DURATION_HEADER] = duration
+        if (preserve != None):
+            self._headers[FILE_ACCESS_PRESERVE_PATHS_HEADER] = preserve
         if (token != None):
             self._headers[FILE_ACCESS_TOKEN_HEADER] = token
         else:
