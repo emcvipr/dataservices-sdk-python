@@ -257,7 +257,7 @@ class ViprData:
         if (duration != None):
             self._headers[FILE_ACCESS_DURATION_HEADER] = duration
         if (preserve != None):
-            self._headers[FILE_ACCESS_PRESERVE_PATHS_HEADER] = preserve
+            self._headers[FILE_ACCESS_PRESERVE_PATHS_HEADER] = preserve.__repr__().lower()
         if (token != None):
             self._headers[FILE_ACCESS_TOKEN_HEADER] = token
         else:
